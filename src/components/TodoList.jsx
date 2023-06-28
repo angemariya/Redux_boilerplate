@@ -1,18 +1,24 @@
 import { useState } from 'react'
 import './todoList.css'
+import { useDispatch, useSelector } from 'react-redux'
+import { add, remove, toggle } from '../redux/actionCreator'
+
+
 export const TodoList = () => {
-  const [todos, setTodos] = useState([
-    { text: 'sdfsd', id: 1 },
-    { text: 'sdfsd', id: 3 },
-  ])
+  const todos = useSelector((store) => store.todo.todos);
+
+  const dispatch = useDispatch();
 
   const [todoText, setTodoText] = useState('')
 
-  const handleAddTodo = () => {}
+  const handleAddTodo = (text) => {
+    dispatch(add(text));
+    setTodoText("")
+  }
 
-  const handleToggleTodo = (id) => {}
+  const handleToggleTodo = (id) => {dispatch(toggle(id))}
 
-  const handleRemoveTodo = (id) => {}
+  const handleRemoveTodo = (id) => {dispatch(remove(id))}
 
   return (
     <div className="container">
@@ -22,7 +28,7 @@ export const TodoList = () => {
         onChange={(e) => setTodoText(e.target.value)}
         className="todo-input"
       />
-      <button onClick={handleAddTodo} className="add-button">
+      <button onClick={()=>handleAddTodo(todoText)} className="add-button">
         Add Todo
       </button>
 
