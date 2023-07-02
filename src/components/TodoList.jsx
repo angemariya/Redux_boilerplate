@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './todoList.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { add, remove, toggle } from '../redux/actionCreator'
+import { add, remove, toggle } from '../redux/todoSlice'
 
 
 export const TodoList = () => {
